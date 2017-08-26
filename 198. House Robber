@@ -1,0 +1,12 @@
+public class Solution {
+    public int rob(int[] nums) {
+        int preYes = 0;
+        int preNo = 0;
+        for (int k : nums) {
+            int temp = preYes;
+            preYes = preNo + k;
+            preNo = Math.max(preNo, temp);
+        }
+        return Math.max(preYes, preNo);
+    }
+}
