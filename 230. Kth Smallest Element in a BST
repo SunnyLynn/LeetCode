@@ -1,0 +1,21 @@
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+        int count = countNodes(root.left);
+        if (count >= k) {
+            return kthSmallest(root.left, k);
+        }
+        if (count + 1 < k) {
+            return kthSmallest(root.right, k - 1 - count);
+        }
+        return root.val;
+    }
+    private int countNodes(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+}
